@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دعوة زفاف: أمير & دينا</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            100: '#fbf4dc',
+                            300: '#e5ca7f',
+                            500: '#c5a059',
+                            600: '#ad853b',
+                            700: '#8c6527',
+                            900: '#523810',
+                        },
+                        burgundy: {
+                            800: '#4a1525',
+                            900: '#2d0a14',
+                        }
+                    },
+                    fontFamily: {
+                        amiri: ['Amiri', 'serif'],
+                        cairo: ['Cairo', 'sans-serif'],
+                        vibes: ['Great Vibes', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: #111111;
+            color: #2c2c2c;
+            background-image: radial-gradient(#222 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .gold-border-frame {
+            border: 2px solid #c5a059;
+            box-shadow: inset 0 0 15px rgba(197, 160, 89, 0.2), 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .gold-border-frame::before {
+            content: '';
+            position: absolute;
+            top: 5px; right: 5px; bottom: 5px; left: 5px;
+            border: 1px solid #e5ca7f;
+            pointer-events: none;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #a77c37 0%, #f7e2a9 50%, #8c6527 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #c5a059 0%, #f7e2a9 50%, #ad853b 100%);
+        }
+
+        .corner-ornament {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            border-color: #c5a059;
+            pointer-events: none;
+        }
+
+        .corner-tl { top: 12px; right: 12px; border-top: 3px solid; border-right: 3px solid; }
+        .corner-tr { top: 12px; left: 12px; border-top: 3px solid; border-left: 3px solid; }
+        .corner-bl { bottom: 12px; right: 12px; border-bottom: 3px solid; border-right: 3px solid; }
+        .corner-br { bottom: 12px; left: 12px; border-bottom: 3px solid; border-left: 3px solid; }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.03); opacity: 1; }
+        }
+
+        .animate-glow {
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+
+        .glass-modal {
+            background: rgba(20, 20, 20, 0.85);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-3 sm:p-6">
+
+    <div class="fixed top-4 left-4 z-50">
+        <button id="musicToggle" onclick="toggleAudio()" class="bg-gold-600 hover:bg-gold-500 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 border-2 border-gold-300">
+            <i id="musicIcon" class="fas fa-music text-lg"></i>
+        </button>
+    </div>
+
+    <div class="max-w-xl w-full bg-[#fdfcf7] rounded-2xl gold-border-frame p-6 sm:p-10 relative my-6 text-center shadow-2xl overflow-hidden">
+        <div class="corner-ornament corner-tl"></div>
+        <div class="corner-ornament corner-tr"></div>
+        <div class="corner-ornament corner-bl"></div>
+        <div class="corner-ornament corner-br"></div>
+
+        <div id="guestGreetingContainer" class="hidden mb-6 bg-gold-100/60 border border-gold-300 py-2 px-4 rounded-full text-gold-900 font-semibold text-sm sm:text-base inline-block shadow-sm">
+            <i class="fas fa-envelope-open-text text-gold-600 ml-2"></i>
+            دعوة خاصة إلى: <span id="guestNameDisplay" class="font-bold text-gold-700 underline decoration-gold-500"></span>
+        </div>
+
+        <div class="mb-8 pt-2">
+            <div class="font-amiri text-lg sm:text-xl text-gray-800 leading-relaxed font-bold px-2 sm:px-6">
+                "وَالآنَ قَدِ اخْتَرْتُ وَقَدَّسْتُ هَذَا الْبَيْتَ لِيَكُونَ اسْمِي فِيهِ إِلَى الأَبَدِ، وَتَكُونُ عَيْنَايَ وَقَلْبِي هُنَاكَ كُلَّ الأَيَّامِ"
+            </div>
+            <div class="text-xs sm:text-sm text-gold-700 font-bold mt-2 font-amiri">
+                (سفر أخبار الأيام الثاني 7: 16)
+            </div>
+        </div>
+
+        <div class="w-24 h-0.5 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto mb-6"></div>
+
+        <div class="mb-6 space-y-1">
+            <p class="text-gray-700 font-semibold text-base sm:text-lg">يتشرف كلا من</p>
+            <div class="flex items-center justify-center gap-3 text-gold-900 font-bold text-lg sm:text-xl">
+                <span>الأستاذ / محي مرزوق</span>
+                <span class="text-gold-500 font-amiri">&amp;</span>
+                <span>الأستاذ / سمير ناعوم</span>
+            </div>
+            <p class="text-gray-700 font-semibold text-base sm:text-lg pt-2">بدعوة سيادتكم لحضور صلاة الاكليل</p>
+        </div>
+
+        <div class="my-8 py-4 bg-gradient-to-r from-transparent via-gold-100/50 to-transparent border-y border-gold-300/40">
+            <p class="text-xs text-gold-600 font-semibold mb-2">للابن المبارك &nbsp;•&nbsp; وللابنة المباركة</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 font-amiri text-4xl sm:text-5xl font-bold text-gold-900">
+                <span class="gold-gradient-text drop-shadow-sm">أمير</span>
+                <span class="font-vibes text-3xl sm:text-4xl text-gold-600">&amp;</span>
+                <span class="gold-gradient-text drop-shadow-sm">دينا</span>
+            </div>
+        </div>
+
+        <div class="space-y-6 my-8 text-right">
+            <div class="flex items-start gap-4 p-3 rounded-xl bg-white/80 border border-gold-100 shadow-sm hover:border-gold-300 transition">
+                <div class="w-12 h-12 rounded-full gold-gradient-bg flex items-center justify-center text-white text-xl shrink-0 shadow-md">
+                    <i class="fas fa-church"></i>
+                </div>
+                <div class="flex-grow">
+                    <h4 class="font-bold text-gold-900 text-base">صلاة الإكليل المقدس</h4>
+                    <p class="text-sm text-gray-700 font-semibold mt-0.5">كاتدرائية رئيس الملائكة ميخائيل بأسيوط</p>
+                    <a href="https://maps.google.com/?q=Archangel+Michael+Cathedral+Assiut" target="_blank" class="inline-flex items-center gap-1 text-xs text-gold-700 hover:text-gold-900 font-bold mt-2 underline">
+                        <i class="fas fa-map-marker-alt text-red-500"></i> موقع الكنيسة على الخريطة
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-4 p-3 rounded-xl bg-white/80 border border-gold-100 shadow-sm hover:border-gold-300 transition">
+                <div class="w-12 h-12 rounded-full gold-gradient-bg flex items-center justify-center text-white text-xl shrink-0 shadow-md">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <div class="flex-grow">
+                    <h4 class="font-bold text-gold-900 text-base">الموعد والتاريخ</h4>
+                    <p class="text-sm text-gray-700 font-semibold mt-0.5">يوم الخميس الموافق 15 - 10 - 2026</p>
+                    <p class="text-sm text-gold-700 font-bold">الساعة 9:00 مساءً</p>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-4 p-3 rounded-xl bg-white/80 border border-gold-100 shadow-sm hover:border-gold-300 transition">
+                <div class="w-12 h-12 rounded-full gold-gradient-bg flex items-center justify-center text-white text-xl shrink-0 shadow-md">
+                    <i class="fas fa-glass-cheers"></i>
+                </div>
+                <div class="flex-grow">
+                    <h4 class="font-bold text-gold-900 text-base">حفل الزفاف (Reception)</h4>
+                    <p class="text-sm text-gray-700 font-semibold mt-0.5">قاعة رويال هول - بفندق ضباط الأمن المركزي</p>
+                    <a href="https://maps.google.com/?q=Royal+Hall+Central+Security+Officers+Hotel+Assiut" target="_blank" class="inline-flex items-center gap-1 text-xs text-gold-700 hover:text-gold-900 font-bold mt-2 underline">
+                        <i class="fas fa-map-marker-alt text-red-500"></i> موقع القاعة على الخريطة
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="font-vibes text-3xl text-gold-600 my-4">Reception To Follow</div>
+
+        <div class="my-8 pt-4 border-t border-gold-200">
+            <h3 class="text-sm font-bold text-gold-800 mb-4 flex items-center justify-center gap-2">
+                <i class="fas fa-hourglass-half text-gold-600"></i> المتبقي على يومنا المميز
+            </h3>
+            <div id="countdown" class="grid grid-cols-4 gap-2 sm:gap-3 dir-ltr">
+                <div class="bg-gold-900 text-gold-100 p-2 sm:p-3 rounded-xl shadow-inner border border-gold-500">
+                    <span id="days" class="block font-bold text-xl sm:text-2xl">00</span>
+                    <span class="text-[10px] sm:text-xs text-gold-300">أيام</span>
+                </div>
+                <div class="bg-gold-900 text-gold-100 p-2 sm:p-3 rounded-xl shadow-inner border border-gold-500">
+                    <span id="hours" class="block font-bold text-xl sm:text-2xl">00</span>
+                    <span class="text-[10px] sm:text-xs text-gold-300">ساعات</span>
+                </div>
+                <div class="bg-gold-900 text-gold-100 p-2 sm:p-3 rounded-xl shadow-inner border border-gold-500">
+                    <span id="minutes" class="block font-bold text-xl sm:text-2xl">00</span>
+                    <span class="text-[10px] sm:text-xs text-gold-300">دقائق</span>
+                </div>
+                <div class="bg-gold-900 text-gold-100 p-2 sm:p-3 rounded-xl shadow-inner border border-gold-500">
+                    <span id="seconds" class="block font-bold text-xl sm:text-2xl">00</span>
+                    <span class="text-[10px] sm:text-xs text-gold-300">ثواني</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-8">
+            <button onclick="openRSVPModal()" class="w-full py-3 px-4 gold-gradient-bg hover:opacity-95 text-white font-bold rounded-xl shadow-md transition flex items-center justify-center gap-2 text-sm sm:text-base border border-gold-300">
+                <i class="fas fa-check-circle"></i> تأكيد الحضور (RSVP)
+            </button>
+            <button onclick="addToCalendar()" class="w-full py-3 px-4 bg-white border-2 border-gold-500 text-gold-800 hover:bg-gold-50 font-bold rounded-xl shadow-sm transition flex items-center justify-center gap-2 text-sm sm:text-base">
+                <i class="fas fa-calendar-plus text-gold-600"></i> إضافـة للتقويم
+            </button>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-dashed border-gold-300 text-xs text-gray-500">
+            <button onclick="openShareModal()" class="inline-flex items-center gap-2 text-gold-700 font-bold hover:underline">
+                <i class="fas fa-share-alt"></i> إنشـاء رابط دعوة باسم صديقك
+            </button>
+        </div>
+
+    </div>
+
+    <div id="rsvpModal" class="fixed inset-0 glass-modal z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl p-6 max-w-md w-full gold-border-frame text-right relative shadow-2xl">
+            <button onclick="closeRSVPModal()" class="absolute top-3 left-3 text-gray-400 hover:text-gray-600 text-xl font-bold">
+                &times;
+            </button>
+            <h3 class="text-xl font-bold text-gold-900 mb-2 flex items-center gap-2">
+                <i class="fas fa-envelope text-gold-600"></i> تأكيد الحضور
+            </h3>
+            <p class="text-xs text-gray-600 mb-4">يسعدنا جداً مشاركتك لنا في هذا اليوم المبارك!</p>
+
+            <form id="rsvpForm" onsubmit="submitRSVP(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">الاسم الكريم</label>
+                    <input type="text" id="rsvpName" required placeholder="اكتب اسمك هنا" class="w-full p-2.5 border border-gold-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">هل ستشرفنا بالحضور؟</label>
+                    <select id="rsvpStatus" class="w-full p-2.5 border border-gold-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500">
+                        <option value="حضور">نعم، يشرفني الحضور بكل سرور 🎉</option>
+                        <option value="اعتذار">للأسف أعتذر عن الحضور 🤍</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">عدد المرافقين</label>
+                    <input type="number" id="rsvpCount" min="1" max="5" value="1" class="w-full p-2.5 border border-gold-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500">
+                </div>
+                <button type="submit" class="w-full py-3 gold-gradient-bg text-white font-bold rounded-xl shadow mt-2">
+                    إرسال التأكيد
+                </button>
+            </form>
+            <div id="rsvpSuccess" class="hidden text-center py-6">
+                <i class="fas fa-heart text-red-500 text-4xl mb-2 animate-bounce"></i>
+                <p class="font-bold text-gold-900">تم تسجيل ردك بنجاح!</p>
+                <p class="text-xs text-gray-600 mt-1">منتظرينك تنورنا في زفاف أمير ودينا ❤️</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="shareModal" class="fixed inset-0 glass-modal z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl p-6 max-w-md w-full gold-border-frame text-right relative shadow-2xl">
+            <button onclick="closeShareModal()" class="absolute top-3 left-3 text-gray-400 hover:text-gray-600 text-xl font-bold">
+                &times;
+            </button>
+            <h3 class="text-xl font-bold text-gold-900 mb-2 flex items-center gap-2">
+                <i class="fas fa-link text-gold-600"></i> تخصيص الدعوة باسم مدعو
+            </h3>
+            <p class="text-xs text-gray-600 mb-4">أدخل اسم الشخص لإنشاء رابط دعوة خاص باسمه:</p>
+
+            <div class="space-y-4">
+                <input type="text" id="customGuestInput" placeholder="مثال: ناير أو أ/ ميخائيل" class="w-full p-2.5 border border-gold-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-500">
+                <button onclick="generateCustomLink()" class="w-full py-2.5 gold-gradient-bg text-white font-bold rounded-xl shadow">
+                    إنشاء ونسخ الرابط
+                </button>
+                <div id="generatedLinkResult" class="hidden p-3 bg-gold-50 border border-gold-200 rounded-lg text-xs break-all text-center">
+                    <p class="text-gray-700 font-semibold mb-1">تم نسخ الرابط المخصص بنجاح!</p>
+                    <span id="linkText" class="text-gold-900 font-mono font-bold"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const guestName = urlParams.get('to') || urlParams.get('name');
+            if (guestName) {
+                document.getElementById('guestNameDisplay').innerText = decodeURIComponent(guestName);
+                document.getElementById('guestGreetingContainer').classList.remove('hidden');
+            }
+        });
+
+        const eventDate = new Date("October 15, 2026 21:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = eventDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = days < 10 ? '0' + days : days;
+                document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+                document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+            } else {
+                document.getElementById('countdown').innerHTML = `<div class="col-span-4 text-gold-600 font-bold text-lg">ألف مبروك للعروسين أمير ودينا! 💍✨</div>`;
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        let audioCtx = null;
+        let isPlaying = false;
+
+        function toggleAudio() {
+            const icon = document.getElementById('musicIcon');
+            if (!isPlaying) {
+                startSoftWeddingMusic();
+                icon.className = 'fas fa-volume-up text-lg animate-pulse';
+                isPlaying = true;
+            } else {
+                stopAudio();
+                icon.className = 'fas fa-music text-lg';
+                isPlaying = false;
+            }
+        }
+
+        function startSoftWeddingMusic() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            const notes = [261.63, 329.63, 392.00, 523.25];
+            let step = 0;
+
+            const playChord = () => {
+                if (!isPlaying) return;
+
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(notes[step % notes.length], audioCtx.currentTime);
+
+                gain.gain.setValueAtTime(0.01, audioCtx.currentTime);
+                gain.gain.linearRampToValueAtTime(0.08, audioCtx.currentTime + 1);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 3);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + 3.2);
+
+                step++;
+            };
+
+            playChord();
+            const interval = setInterval(() => {
+                if (!isPlaying) {
+                    clearInterval(interval);
+                } else {
+                    playChord();
+                }
+            }, 2500);
+        }
+
+        function stopAudio() {
+            if (audioCtx) {
+                audioCtx.suspend();
+            }
+        }
+
+        function addToCalendar() {
+            const title = encodeURIComponent("صلاة إكليل وحفل زفاف أمير ودينا");
+            const details = encodeURIComponent("صلاة الإكليل بكاتدرائية رئيس الملائكة ميخائيل بأسيوط، يليها الحفل بقاعة رويال هول بفندق ضباط الأمن المركزي.");
+            const location = encodeURIComponent("كاتدرائية رئيس الملائكة ميخائيل بأسيوط");
+            const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20261015T190000Z/20261015T230000Z&details=${details}&location=${location}`;
+            window.open(googleCalUrl, '_blank');
+        }
+
+        function openRSVPModal() {
+            document.getElementById('rsvpModal').classList.remove('hidden');
+        }
+        function closeRSVPModal() {
+            document.getElementById('rsvpModal').classList.add('hidden');
+        }
+        function submitRSVP(e) {
+            e.preventDefault();
+            document.getElementById('rsvpForm').classList.add('hidden');
+            document.getElementById('rsvpSuccess').classList.remove('hidden');
+        }
+
+        function openShareModal() {
+            document.getElementById('shareModal').classList.remove('hidden');
+        }
+        function closeShareModal() {
+            document.getElementById('shareModal').classList.add('hidden');
+            document.getElementById('generatedLinkResult').classList.add('hidden');
+        }
+
+        function generateCustomLink() {
+            const name = document.getElementById('customGuestInput').value.trim();
+            if (!name) return;
+
+            const baseUrl = window.location.href.split('?')[0];
+            const fullUrl = `${baseUrl}?to=${encodeURIComponent(name)}`;
+
+            const tempInput = document.createElement('input');
+            tempInput.value = fullUrl;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            document.getElementById('linkText').innerText = fullUrl;
+            document.getElementById('generatedLinkResult').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
